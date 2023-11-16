@@ -33,7 +33,7 @@ router.get("/reset", (req, res) => {
 
 // getting home page
 
-router.get("/home", (req, res) => {
+router.get("/", (req, res) => {
   res.render("home");
 });
 
