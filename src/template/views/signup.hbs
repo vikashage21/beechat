@@ -1,0 +1,90 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>signup-page</title>
+  <link rel="icon" type="image/x-icon" href="/bee.png">
+
+    <link rel="stylesheet" href="css/signup.css" />
+  </head>
+  <body>
+    {{>nav}}
+    <div class="container">
+<div class="info">
+    <i class="fa-brands fa-rocketchat"></i><h3>
+    Welcome </h3>
+    <p>
+       to BEE-CHAT a socail media site .
+    </p>
+</div>
+      <div class="formContainer">
+        <h1>Employee Registration Form </h1>
+        <div class="form">
+          <form action="/signup" method="post">
+            <input
+              type="text" 
+              name="firstName"
+              placeholder="First Name * "
+              required
+              
+            />
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              placeholder="Last Name * "
+              required
+              
+            />
+
+            <input
+              type="email"
+              name="email"
+              placeholder=" Your Email * "
+              required
+              
+            />
+            <input
+              type="text"
+              name="phone"
+              placeholder="Your Phone * "
+              required
+              
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password * "
+              required
+              
+            />
+            <input
+              type="password"
+              name="confirm_password"
+              placeholder=" Confirm Password * "
+              required
+              
+            />
+
+            <input
+              type="text"
+              name="age"
+              placeholder=" Enter Your Age  * "
+              required
+              
+            />
+
+            <input class="submit" type="submit" />
+
+            <a href="/login"> login </a>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+    {{>footer}}
+    <script src="https://kit.fontawesome.com/9abda2b47f.js" crossorigin="anonymous"></script>
+
+  </body>
+</html>
