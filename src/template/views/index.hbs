@@ -8,11 +8,11 @@
     <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"
         integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+"
         crossorigin="anonymous"></script>
-  <link rel="icon" type="image/x-icon" href="/bee.png">
+    <link rel="icon" type="image/x-icon" href="/bee.png">
 
-        <link rel="stylesheet" href="css/signup.css">
+    <link rel="stylesheet" href="css/signup.css">
     <style>
-       body {
+        body {
             margin: 0 auto;
             max-width: 800px;
             padding: 0 20px;
@@ -45,7 +45,7 @@
             max-width: 60px;
             width: 100%;
             margin-right: 20px;
-            border-radius: 50%;
+           
         }
 
         .container img.right {
@@ -108,7 +108,6 @@
         .result {
             margin-top: 20px;
         }
-
     </style>
 </head>
 
@@ -207,36 +206,53 @@
 
     socket.on('displayMsg', function (data) {
         replayMsg(data)
+
+    })
+     
+
+     // receving the base64Image and boadcasting the image to all user 
+
+
+    socket.on('displayImage', function (data) {
+        let html = `
+   <img src="${data}" alt="Uploaded Image" class="img-fluid">
+ 
+
+`
+        replayMsg(html)
+
     })
 
 
-  // Your existing client-side code here
+    // Your existing client-side code here
 
-        // Modify the existing upload function to handle both text and image
-        function upload(files) {
-            const fileInput = files[0];
-            const reader = new FileReader();
+    // Modify the existing upload function to handle both text and image
+    function upload(files) {
+        const fileInput = files[0];
+        const reader = new FileReader();
 
-            reader.onloadend = function () {
-                const base64Content = reader.result;
+        reader.onloadend = function () {
+            const base64Content = reader.result;
 
-                if (fileInput.type.startsWith('image/')) {
-                    // If it's an image, display it in an image container
-                    const imgContainer = document.createElement('div');
-                    imgContainer.classList.add('container');
-                    imgContainer.innerHTML = `
+            if (fileInput.type.startsWith('image/')) {
+                // If it's an image, display it in an image container
+                const imgContainer = document.createElement('div');
+                imgContainer.classList.add('container');
+                imgContainer.innerHTML = `
                         <img src="${base64Content}" alt="Uploaded Image" class="img-fluid">
                         <span class="time-left">${new Date().toLocaleTimeString()}</span>
                     `;
-                    result.appendChild(imgContainer);
-                } else {
-                    // If it's not an image, treat it as a text message
-                    displayMessage(base64Content);
-                }
-            };
+                result.appendChild(imgContainer);
+                // Send the image to the server
+                socket.emit('image', base64Content);
+            } else {
+                // If it's not an image, treat it as a text message
+                displayMessage(base64Content);
+            }
+        };
 
-            reader.readAsDataURL(fileInput);
-        }
+        reader.readAsDataURL(fileInput);
+    }
 
 
 

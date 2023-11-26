@@ -79,7 +79,10 @@ io.on('connection', Socket => {
     Socket.on('image', (base64Image) => {
         // Handle the received image on the server side
         // For example, you can save it to a file or send it to other connected clients
-        console.log('Received Image:', base64Image.substring(0, 30) + '...');
+        // Socket.broadcast.emit('image', base64Image);
+        Socket.broadcast.emit('displayImage',base64Image)
+
+        // console.log('Received Image:', base64Image.substring(0, 30) + '...');
     });
 
     // for deconnecting the server
