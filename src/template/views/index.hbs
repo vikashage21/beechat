@@ -12,11 +12,12 @@
 
         <link rel="stylesheet" href="css/signup.css">
     <style>
-        body {
+       body {
             margin: 0 auto;
             max-width: 800px;
             padding: 0 20px;
             background-color: rgb(144, 144, 233);
+            font-family: Arial, sans-serif;
         }
 
         .container {
@@ -25,9 +26,10 @@
             border-radius: 5px;
             padding: 10px;
             margin: 10px 0;
+            overflow: hidden;
         }
 
-        .darker {
+        .container.darker {
             border-color: #ccc;
             background-color: #ddd;
         }
@@ -52,7 +54,8 @@
             margin-right: 0;
         }
 
-        .time-right {
+        .time-right,
+        .time-left {
             float: right;
             color: #aaa;
         }
@@ -62,17 +65,17 @@
             color: #999;
         }
 
-        #send{
+        #send {
             background-color: black;
             border-radius: 25px;
             color: white;
             padding: 10px;
             border: none;
             margin: 5px;
-
-
+            cursor: pointer;
         }
-        input{
+
+        input {
             border: none;
             text-transform: capitalize;
             width: 80%;
@@ -80,6 +83,30 @@
             outline: none;
             border-bottom: 2px solid black;
             background-color: transparent;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        label {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border-radius: 25px;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        #imageInputLabel {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        .result {
+            margin-top: 20px;
         }
 
     </style>
@@ -88,15 +115,14 @@
 <body>
     {{>nav}}
 
-    <div class="result">
+    <div class="result chat-messages"></div>
 
-
-    </div>
-    <form action="">
-        <input id="input" type="text" placeholder=" enter your message">
-        <button id="send"> send</button>
+    <form id="chatForm">
+        <input id="input" type="text" placeholder="Enter your message">
+        <input type="file" id="imageInput" onchange="upload(this.files)" />
+        <label for="imageInput" id="imageInputLabel">Attach Image</label>
+        <button type="submit" id="send">Send</button>
     </form>
-
     {{>footer}}
 
 </body>
@@ -184,7 +210,33 @@
     })
 
 
+  // Your existing client-side code here
 
+        // Modify the existing upload function to handle both text and image
+        function upload(files) {
+            const fileInput = files[0];
+            const reader = new FileReader();
+
+            reader.onloadend = function () {
+                const base64Content = reader.result;
+
+                if (fileInput.type.startsWith('image/')) {
+                    // If it's an image, display it in an image container
+                    const imgContainer = document.createElement('div');
+                    imgContainer.classList.add('container');
+                    imgContainer.innerHTML = `
+                        <img src="${base64Content}" alt="Uploaded Image" class="img-fluid">
+                        <span class="time-left">${new Date().toLocaleTimeString()}</span>
+                    `;
+                    result.appendChild(imgContainer);
+                } else {
+                    // If it's not an image, treat it as a text message
+                    displayMessage(base64Content);
+                }
+            };
+
+            reader.readAsDataURL(fileInput);
+        }
 
 
 

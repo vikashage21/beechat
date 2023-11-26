@@ -13,33 +13,49 @@
       margin: 0;
       padding: 0;
       background-color: #f1f1f1;
+      perspective: 1000px;
+      /* Adding perspective for 3D effect */
     }
 
     header {
-      background-color: #4CAF50;
-      padding: 20px;
+      background-color: #1f5221;
+      padding: 100px;
       text-align: center;
       color: white;
     }
 
     .container {
       max-width: 800px;
+      max-height: 50%;
       margin: 20px auto;
       background-color: white;
-      padding: 20px;
+      padding: 120px;
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transform: rotateX(10deg);
+      /* Rotate the container for 3D effect */
+      animation: fadeIn 1s ease-in-out;
+      /* Add fadeIn animation */
     }
 
     .illustration {
       text-align: center;
       margin-bottom: 20px;
+      transform: rotateX(-10deg);
+      /* Rotate the illustration in the opposite direction */
     }
 
     img {
-      max-width: 100%;
+      max-width: 125px;
       height: auto;
       border-radius: 8px;
+      transition: transform 0.5s ease-in-out;
+      /* Add transition for smoother hover effect */
+    }
+
+    img:hover {
+      transform: scale(1.1);
+      /* Scale up the image on hover */
     }
 
     .description {
@@ -56,13 +72,25 @@
       bottom: 0;
       width: 100%;
     }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   </style>
 </head>
 
 <body>
-    {{>nav}}
+  {{>nav}}
   <header>
-     <i class="fa-brands fa-rocketchat"></i>
+    <i class="fab fa-rocketchat"></i>
     <h1>BeeChat - A Social Chatting App</h1>
   </header>
 
@@ -72,14 +100,46 @@
     </div>
 
     <div class="description">
-      <p>Welcome to BeeChat, where you can chat with random or anonymous people!</p>
-      <p>Connect with others and have meaningful conversations in a secure environment.</p>
+      <p id="typing-text"></p>
+      <p>
+
+
+        , where you can chat with random or anonymous people!Connect with others and have meaningful conversations in a
+        secure environment.
+      </p>
+
+
     </div>
   </div>
 
   {{>footer}}
-    <script src="https://kit.fontawesome.com/9abda2b47f.js" crossorigin="anonymous"></script>
 
+  <script>
+    const textToType = "Welcome to BeeChat";
+
+    function typeText() {
+      const textElement = document.getElementById("typing-text");
+      textElement.textContent = "";
+      let index = 0;
+
+      function type() {
+        if (index < textToType.length) {
+          textElement.textContent += textToType.charAt(index);
+          index++;
+          setTimeout(type, 100);
+        }
+      }
+
+      type();
+    }
+
+
+    window.onload = function () {
+      typeText()
+    };
+  </script>
+
+  <script src="https://kit.fontawesome.com/9abda2b47f.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

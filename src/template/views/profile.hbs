@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <!-- Link to your stylesheets and any additional necessary styles -->
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/signup.css">
+
+    
+    <!-- Add any necessary scripts or links to animation libraries -->
+</head>
+<body>
+
+    {{>nav}}
+    <div class="profile-container">
+         {{!-- setting the profile image here  --}}
+                        <img src="/{{user.profileImg}}" alt=" profile Image" class="profile-img ">
+        <h1 class="animated-text"> {{user.firstName}}</h1>
+
+        <!-- Display user profile information -->
+        <div class="profile-info">
+            <p>Email: {{user.email}}</p>
+            <!-- Add other profile information as needed -->
+        </div>
+
+        <!-- Display user posts -->
+        <div class="user-posts">
+            <h2>Your Posts:</h2>
+            {{#each userPosts}}
+                <div class="post-card">
+                    <img src="{{img}}" alt="Post Image" class="post-image">
+    
+
+                    <p class="post-description">{{desc}}</p>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+
+    <!-- Include necessary scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="js/profile-animation.js"></script>
+</body>
+</html>
