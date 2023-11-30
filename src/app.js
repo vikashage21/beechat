@@ -57,12 +57,11 @@ app.use(userPost)
 // creating route for socket io 
 
 
-
 let user = 0;
 
 io.on('connection', Socket => {
     console.log('A user connected')
-    userId = nanoid(Math.floor(Math.random() * 10));
+  let  userId = nanoid(Math.floor(Math.random() * 10));
 
 
     user++
@@ -73,6 +72,7 @@ io.on('connection', Socket => {
 
     Socket.on('userMessage', function (data) {
         Socket.broadcast.emit('displayMsg', `   ${data}`)
+        
     })
 
 

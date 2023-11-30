@@ -141,6 +141,8 @@ console.log(img)
       const user= await  userPost.insertMany([data])
 
       // res.status(200).json(user)
+     
+
      res.redirect('/user-posts')
   }
 

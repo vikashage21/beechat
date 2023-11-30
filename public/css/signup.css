@@ -164,7 +164,8 @@
   
   ul {
     list-style-type: none;
-    margin: 0;
+    margin: auto;
+    width: 50%;
     padding: 0;
     display: flex;
     justify-content: center;
@@ -298,7 +299,7 @@
     }
 } */
 
-
+}
 
  /* adding some typing effect */
  #typing-text {

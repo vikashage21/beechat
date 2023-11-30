@@ -42,6 +42,7 @@
         }
 
         .post-footer {
+            display: flex;
             background-color: #007bff;
             color: #ffffff;
             padding: 10px;
@@ -51,16 +52,35 @@
         }
 
         .post-image {
-            max-width: 80px; /* Adjust the width as needed */
+            max-width: 80px;
             height: auto;
-            border-radius: 50%; /* Circular border-radius */
-            border: 4px solid #ffffff; /* White border around the image */
+            border-radius: 50%;
+            border: 4px solid #ffffff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease-in-out;
         }
 
         .post-image:hover {
-            transform: scale(1.1); /* Zoom in on hover */
+            transform: scale(1.1);
+        }
+
+        #likesCount {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        #shareButton {
+            background-color: #28a745;
+            color: #ffffff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        #shareButton:hover {
+            background-color: #218838;
         }
 
         @keyframes fadeIn {
@@ -72,38 +92,84 @@
                 opacity: 1;
             }
         }
+
+        form {
+            display: flex;
+            justify-content: center;
+            margin: auto;
+            align-items: center;
+        }
+        #fetchLikesButton{
+            margin :13px
+        }
     </style>
 </head>
 
 <body>
+    <!-- Navigation -->
     {{>nav}}
 
     <div class="container">
         {{#each posts}}
         <div class="post-container">
             <div class="post-header">
-                {{!-- Setting the profile image --}}
-                <img src="/{{profileImg}}" alt="Profile Image" class="post-image img-fluid">
-                <h2>User name: {{firstName}}</h2>
+                <!-- Profile Image -->
+                <img src="/{{profileImg}}"  alt="Profile Image" class="post-image img-fluid rounded-circle">
+                {{!-- <img src="/{{profileImg}}"  alt="{{deafaultImg}}" class="post-image img-fluid rounded-circle"> --}}
+
+                <!-- User Name -->
+                <h2 class="mt-3"><a href="/user-profile/{{userId}}" class="text-white">{{firstName}}</a></h2>
+
             </div>
             <div class="post-content">
-                <p>Description: {{desc}}</p>
-                <!-- You might need to handle images differently -->
+                <!-- Post Description -->
+                <p>{{desc}}</p>
+                <!-- Post Image -->
                 <img src="/{{img}}" alt="Post Image" class="img-fluid">
+                
             </div>
             <div class="post-footer">
-                <!-- Add any additional footer content here -->
+                <!-- Share Button -->
+                <form action="/like/{{userId}}/{{_id}}" method="post">
+                    <!-- Fetch Likes Button -->
+                    <button id="fetchLikesButton" class="btn btn-light btn-sm"> Like <i class="fa-solid fa-thumbs-up"></i></button>
+                    <!-- Likes Count -->
+                    <p id="likesCount">Likes: {{freinds.length}} <span id="likesValue"></span></p>
+                </form>
+                <button id="shareButton">Share <i class="fa-solid fa-share"></i></button>
+                <!-- Additional Footer Content -->
             </div>
         </div>
         {{/each}}
     </div>
 
+    <!-- Footer -->
     {{>footer}}
+
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', function () {
+            const shareButton = document.getElementById('shareButton');
+
+            shareButton.addEventListener('click', function () {
+                // Get the current page URL
+                const currentPageUrl = window.location.href;
+
+                // Construct the Facebook share URL
+                const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentPageUrl)}`;
+
+                // Open a new window or tab to share on Facebook
+                window.open(facebookShareUrl, '_blank');
+            });
+        });
+    </script>
 
     <!-- Bootstrap JS and dependencies (jQuery) -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/9abda2b47f.js" crossorigin="anonymous"></script>
+
 
 </body>
 

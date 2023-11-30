@@ -58,16 +58,28 @@ body {
     border-radius: 8px;
 }
 
+.post-footer {
+    display: flex;
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 10px;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0 0 10px 10px;
+}
+
 .profile-img {
     display: flex;
     margin: auto;
-    
-    width: 100px; /* Set your desired width */
-    height: 100px; /* Set your desired height */
+
+    width: 100px;
+    /* Set your desired width */
+    height: 100px;
+    /* Set your desired height */
     border-radius: 50%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
-   
+
 }
 
 .profile-img:hover {
@@ -79,6 +91,7 @@ body {
         opacity: 0;
         transform: translateY(-20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -90,8 +103,71 @@ body {
         opacity: 0;
         transform: translateX(-20px);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
     }
+}
+
+
+#likesCount {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+#shareButton {
+    background-color: #28a745;
+    color: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+#shareButton:hover {
+    background-color: #218838;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+form {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    align-items: center;
+}
+
+#fetchLikesButton {
+    margin: 13px
+}
+
+
+h1 {
+    text-align: center;
+    color: #007bff;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

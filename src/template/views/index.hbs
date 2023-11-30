@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>inbox - chat</title>
     <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"
         integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+"
         crossorigin="anonymous"></script>
@@ -132,12 +132,18 @@
 
     const date = new Date().toLocaleTimeString()
 
+            // Audio notification
+        const notificationSound = new Audio('../notification/audio.mp3');
+        const sendSound = new Audio('../notification/sent.mp3');
+
+
+
     const displayMessage = function (message) {
         const div = document.createElement('div');
         const html = `
         <div class="container ">
   
-  <p>${message}</p>
+  <p>${message} </p>
   <span class="time-left">${date}</span>
 </div>
 
@@ -147,6 +153,8 @@
 
 
         result.appendChild(div);
+        // Play notification sound
+            notificationSound.play();
 
 
     }
@@ -157,7 +165,7 @@
         const html = `
         <div class="container darker">
   
-  <p>${message}</p>
+  <p>${message} </p>
   <span class="time-left">${date}</span>
 </div>
 
@@ -188,9 +196,10 @@
 
         console.log('submit');
 
-        socket.emit('userMessage', input.value);
+        socket.emit('userMessage', input.value ) ;
         input.value = '';
 
+        sendSound.play()
 
     });
 
@@ -205,7 +214,9 @@
     })
 
     socket.on('displayMsg', function (data) {
-        replayMsg(data)
+        replayMsg(`${data} `)
+            notificationSound.play();
+
 
     })
      
@@ -258,6 +269,8 @@
 
 
 
+
 </script>
+<script src="https://kit.fontawesome.com/9abda2b47f.js" crossorigin="anonymous"></script>
 
 </html>

@@ -18,6 +18,17 @@ img:{
     // required:"true"
 
 }
+,
+freinds:[{
+    userId:{
+        
+        type:String
+    
+    }
+ }
+   
+        
+ ]
 
 
 })
