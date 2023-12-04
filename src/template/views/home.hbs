@@ -5,87 +5,59 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BeeChat - A Social Chatting App</title>
-  <link rel="icon" type="image/x-icon" href="/bee.png">
-  <link rel="stylesheet" href="css/signup.css">
+  <link rel="icon" type="image/x-icon" href="bee.png">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <!-- Custom Styles -->
   <style>
     body {
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f1f1f1;
-      perspective: 1000px;
-      /* Adding perspective for 3D effect */
+      background-color: #fbee21; /* Bee yellow background */
     }
 
     header {
-      background-color: #1f5221;
-      padding: 100px;
+      background-color: #333;
+      color: #fbee21;
+      padding: 15px;
       text-align: center;
-      color: white;
+    }
+
+    header i {
+      font-size: 2em;
+      margin-right: 10px;
     }
 
     .container {
-      max-width: 800px;
-      max-height: 50%;
-      margin: 20px auto;
-      background-color: white;
-      padding: 120px;
-      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    .card {
+      border: none;
+      background-color: #fff; /* White card background */
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      transform: rotateX(10deg);
-      /* Rotate the container for 3D effect */
-      animation: fadeIn 1s ease-in-out;
-      /* Add fadeIn animation */
     }
 
-    .illustration {
-      text-align: center;
-      margin-bottom: 20px;
-      transform: rotateX(-10deg);
-      /* Rotate the illustration in the opposite direction */
+    .description p {
+      color: #333;
     }
 
-    img {
-      max-width: 125px;
-      height: auto;
-      border-radius: 8px;
-      transition: transform 0.5s ease-in-out;
-      /* Add transition for smoother hover effect */
+    .illustration img {
+      width: 100%;
+      max-width: 300px;
+      margin-top: 20px;
     }
 
-    img:hover {
-      transform: scale(1.1);
-      /* Scale up the image on hover */
-    }
-
-    .description {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
+    /* Custom footer style */
     footer {
-      background-color: #4CAF50;
-      padding: 10px;
+      background-color: #333;
+      color: #fbee21;
+      padding: 15px;
       text-align: center;
-      color: white;
       position: fixed;
       bottom: 0;
       width: 100%;
     }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-   
   </style>
 </head>
 
@@ -97,25 +69,25 @@
   </header>
 
   <div class="container">
-   
-
-    <div class="illustration">
-      <img src="/bee.png" alt="BeeChat Illustration">
-    </div>
-
-    <div class="description">
-      <p id="typing-text"></p>
-      <p>
-
-
-        , where you can chat with random or anonymous people!Connect with others and have meaningful conversations in a
-        secure environment.
-      </p>
-
-
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card mt-5">
+          <div class="card-body">
+            <div class="illustration text-center">
+              <img src="bee.png" alt="BeeChat Illustration" class="img-fluid">
+            </div>
+            <div class="description text-center">
+              <p id="typing-text"></p>
+              <p>
+                Welcome to BeeChat, where you can buzz with random or anonymous bees! Connect with others and have meaningful conversations in a secure hive environment.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-
+  
   {{>footer}}
 
   <script>
@@ -137,14 +109,15 @@
       type();
     }
 
-   
-
     window.onload = function () {
       typeText()
     };
-
   </script>
 
+  <!-- Bootstrap JS and Font Awesome -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://kit.fontawesome.com/9abda2b47f.js" crossorigin="anonymous"></script>
 </body>
 
