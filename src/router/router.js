@@ -32,7 +32,7 @@ const storage = multer.diskStorage({
 const upload= multer({storage})
 
 
-// serving the uploads files as a static file
+// serving the uploads files as a static file ....
 
 
 router.use('/uploads', express.static(path.join(__dirname, '../uploads')));
