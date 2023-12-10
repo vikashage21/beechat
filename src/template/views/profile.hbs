@@ -4,44 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
-    <!-- Link to your stylesheets and any additional necessary styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="css/profile.css">
-    <link rel="stylesheet" href="css/signup.css">
-
-    
     <!-- Add any necessary scripts or links to animation libraries -->
 </head>
-<body>
-
+<body class="bg-warning">
     {{>nav}}
-    <div class="profile-container">
-         {{!-- setting the profile image here  --}}
-                        <img src="/{{user.profileImg}}" alt=" profile Image" class="profile-img ">
-        <h1 class="animated-text"> {{user.firstName}}</h1>
-
-        <!-- Display user profile information -->
-        <div class="profile-info">
-            <p>Email: {{user.email}}</p>
-            <!-- Add other profile information as needed -->
+     <!-- Profile Section -->
+    <div class="container profile-container mt-5 bg-light p-4 rounded">
+        <div class="text-center animated-text">
+            <!-- Bee-themed profile image -->
+            <img src="/{{user.profileImg}}" alt="Profile Image" class="img-fluid rounded-circle border border-5 profile-img border-warning" style="max-width: 150px;">
+            <h2 class="mt-3">{{user.firstName}}</h2>
         </div>
 
-        <!-- Display user posts -->
-        <div class="user-posts">
-            <h2>Your Posts:</h2>
-            {{#each userPosts}}
-                <div class="post-card">
-                    <img src="{{img}}" alt="Post Image" class="post-image">
-    
-
-                    <p class="post-description">{{desc}}</p>
-                </div>
-            {{/each}}
+        <!-- Display user profile information -->
+        <div class="mt-4">
+            <p class="fs-5 animated-text text-secondary">Email: {{user.email}}</p>
+            <!-- Add other profile information as needed -->
         </div>
     </div>
 
-    <!-- Include necessary scripts -->
+    <!-- Post Section -->
+    <div class="container bg-white mt-4">
+        <h2 class="mb-4 fs-4 text-warning">Your Bee Posts:</h2>
+        <div class="row">
+            {{#each userPosts}}
+            <div class="col-md-4 mb-4">
+                <div class="card post-card bg-light">
+                    <img src="{{img}}" alt="Bee Post Image" class="card-img-top rounded-top">
+                    <div class="card-body">
+                        <p class="card-text">{{desc}}</p>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+{{>footer}}
+    <!-- Bootstrap scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script src="js/profile-animation.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-euJ5A/wUOVF2ZUDqEz7Lk3X6t/s3tF/tWEdbqVcqwy7/XFZkXIs1nV6DJ7vDdAmZ" crossorigin="anonymous"></script>
 </body>
 </html>
