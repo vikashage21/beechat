@@ -18,45 +18,47 @@
 <body>
 
     {{>nav}}
-    <div class="profile-container">
-        {{!-- setting the profile image here --}}
-        <img src="/{{user.profileImg}}" alt=" profile Image" class="profile-img ">
-        <h1 class="animated-text"> {{user.firstName}}</h1>
+    <div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 profile-container">
+      <!-- setting the profile image here -->
+      <img src="/{{user.profileImg}}" alt="Profile Image" class="profile-img img-fluid">
+      <h1 class="animated-text">{{user.firstName}}</h1>
 
-        <!-- Display user profile information -->
-        <div class="profile-info">
-            <p>Email: {{user.email}}</p>
-            <!-- Add other profile information as needed -->
+      <!-- Display user profile information -->
+      <div class="profile-info mt-3">
+        <p>Email: {{user.email}}</p>
+        <!-- Add other profile information as needed -->
+      </div>
+
+      <!-- Display user posts -->
+      <div class="user-posts mt-4">
+        <h2>Your Posts:</h2>
+        {{#each posts}}
+        <div class="card post-card mb-3">
+          <div class="card-body">
+            <p class="card-text">{{desc}}</p>
+            <img src="/{{img}}" alt="Post Image" class="card-img-top">
+          </div>
+          <div class="card-footer">
+            <!-- Share Button -->
+            <form action="/like/{{userId}}/{{_id}}" method="post">
+              <!-- Fetch Likes Button -->
+              <button id="fetchLikesButton" class="btn btn-light btn-sm">
+                Like <i class="fa-solid fa-thumbs-up"></i>
+              </button>
+              <!-- Likes Count -->
+              <p id="likesCount" class="mb-0">Likes: {{freinds.length}} <span id="likesValue"></span></p>
+            </form>
+            <button id="shareButton" class="btn btn-secondary">Share <i class="fa-solid fa-share"></i></button>
+            <!-- Additional Footer Content -->
+          </div>
         </div>
-
-        <!-- Display user posts -->
-        <div class="user-posts">
-            <h2>Your Posts:</h2>
-            {{#each posts}}
-            <div class="post-card">
-
-                 <p>{{desc}}</p>
-                 
-                <img src="/{{img}}" alt="Post Image" class="post-image">
-
-                <div class="post-footer">
-                    <!-- Share Button -->
-                    <form action="/like/{{userId}}/{{_id}}" method="post">
-                        <!-- Fetch Likes Button -->
-                        <button id="fetchLikesButton" class="btn btn-light btn-sm"> Like <i
-                                class="fa-solid fa-thumbs-up"></i></button>
-                        <!-- Likes Count -->
-                        <p id="likesCount">Likes: {{freinds.length}} <span id="likesValue"></span></p>
-                    </form>
-                    <button id="shareButton">Share <i class="fa-solid fa-share"></i></button>
-                    <!-- Additional Footer Content -->
-                </div>
-
-            </div>
-            {{/each}}
-        </div>
+        {{/each}}
+      </div>
     </div>
-
+  </div>
+</div>
     <!-- Include necessary scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>

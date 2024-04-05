@@ -1,19 +1,42 @@
-<nav>
-  <h3>
+<head> 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">
     <i class="fab fa-rocketchat"></i>
-    BEE CHAT
-  </h3>
-  <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/signup">signup</a></li>
-    <li><a href="/login">Login</a></li>
-    <li id="logout"><a href="/logout">Logout</a></li>
-    <li><a href="/chat">Chat</a></li>
-    <li><a href="/profile">Profile</a></li>
-    <li><a href="/post">create post</a></li>
-    <li><a href="/user-posts">  posts </a></li>
-
-
-
-  </ul>
+    BEE CHAT 
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item {{#if isHome}}active{{/if}}">
+        <a class="nav-link" href="/">Home</a>
+      </li>
+      <li class="nav-item {{#if isSignup}}active{{/if}}">
+        <a class="nav-link" href="/signup">Signup</a>
+      </li>
+      <li class="nav-item {{#if isLogin}}active{{/if}}">
+        <a class="nav-link" href="/login">Login</a>
+      </li>
+      <li class="nav-item {{#if isLogout}}active{{/if}}">
+        <a class="nav-link" href="/logout">Logout</a>
+      </li>
+      <li class="nav-item {{#if isChat}}active{{/if}}">
+        <a class="nav-link" href="/chat">Chat</a>
+      </li>
+      <li class="nav-item {{#if isProfile}}active{{/if}}">
+        <a class="nav-link" href="/profile">Profile</a>
+      </li>
+      <li class="nav-item {{#if isPost}}active{{/if}}">
+        <a class="nav-link" href="/post">Create Post</a>
+      </li>
+      <li class="nav-item {{#if isUserPosts}}active{{/if}}">
+        <a class="nav-link" href="/user-posts">Posts</a>
+      </li>
+    </ul>
+  </div>
 </nav>
+  
